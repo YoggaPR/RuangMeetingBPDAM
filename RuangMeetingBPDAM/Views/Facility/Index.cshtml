@@ -1,0 +1,245 @@
+﻿@model Facilities
+
+@{
+    DateTime DateNow = DateTime.Now;
+    string dateNow = DateNow.ToString("dd/MM/yyyy");
+    string dayNow = DateNow.ToString("dddd");
+    string timeNow = DateNow.ToString("HH:mm");
+
+    string startTime = Model.StartTime.ToString("HH:mm");
+    string startDate = Model.StartDate.ToString("dd/MM/yyyy");
+
+    string endTime = Model.EndTime.ToString("HH:mm");
+    string endDate = Model.EndDate.ToString("dd/MM/yyyy");
+
+    //string startDate = Model.StartDate.ToString();
+    //string startDay = startDate.Substring(0,10);
+    //string timeOnly = Model.StartDate.ToString("HH:mm:ss");
+}
+@if (Model.Id != null)
+{
+    <div class="d-flex bd-highlight">
+        <div class="p-2 w-75 bd-highlight" style="border:solid 1px">
+            <h1 class="pt-3">Meeting Room</h1>
+            <div class="mt-5"></div>
+            <div class="mt-5"></div>
+
+            <h1 class="pt-3">@Model.Tower</h1>
+            <h1 class="">@Model.Floor</h1>
+            <hr />
+
+            <p class="fw-bold pt-3">@Model.Participants Participants</p>
+            <p class="fw-bold">Facilities: @Model.Facility</p>
+
+            <p><b>@dayNow, @dateNow</b></p>
+            <h2>@timeNow</h2>
+            @*<h3>@startTime</h3>*@
+
+            <div class="pb-3"></div>
+            <table class="table table-bordered table-striped pt-3 pb-5" style="width:100%; table-layout:fixed;">
+                <thead>
+                    <tr>
+                        <th>
+                            Facility
+                        </th>
+                        <th>
+                            Start Date
+                        </th>
+                        <th>
+                            End Date
+                        </th>
+                        <th>
+                            Start Time
+                        </th>
+                        <th>
+                            End Time
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Tower
+                        </th>
+                        <th>
+                            Floor
+                        </th>
+                        <th>
+                            PIC
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td width="10%" id="coba">@Model.Facility</td>
+                        <td width="10%" id="coba">@Model.StartDate</td>
+                        <td width="10%" id="coba">@Model.EndDate</td>
+                        <td width="10%" id="coba">@Model.StartTime</td>
+                        <td width="10%" id="coba">@Model.EndTime</td>
+                        <td width="10%" id="coba">@Model.Title</td>
+                        <td width="10%" id="coba">@Model.Tower</td>
+                        <td width="10%" id="coba">@Model.Floor</td>
+                        <td width="10%" id="coba">@Model.PIC</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="p-2 w-25 bd-highlight align-self-stretch" style="background:linear-gradient(90deg, rgba(18,16,59,1) 0%, rgba(13,13,64,1) 35%, rgba(24,85,103,1) 76%, rgba(14,148,175,1) 100%);">
+            <div class="align-self-center text-white" style="height:100%; text-align:center;">
+                <p class="mt-auto"><b>Next</b></p>
+
+                <h3 class="pt-3">@startTime - @startTime</h3>
+                <h3 class="">@Model.Title</h3>
+            
+                <p class="pt-3">Event Organizer:</p>
+                <p>@Model.Email</p>
+            
+            <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Detail Meeting
+                </button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Detail Meeting</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="row g-3">
+                                <div class="col-12">
+                                    <label for="inputAddress" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="inputAddress" value="@Model.Title">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputEmail4" class="form-label">Start Date</label>
+                                    <input type="text" class="form-control" value="@startDate">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputPassword4" class="form-label">Start Time</label>
+                                    <input type="text" class="form-control" value="@startTime">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputEmail4" class="form-label">End Date</label>
+                                    <input type="text" class="form-control" value="@endDate">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputPassword4" class="form-label">End Time</label>
+                                    <input type="text" class="form-control" value="@endTime">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputEmail4" class="form-label">PIC</label>
+                                    <input type="text" class="form-control" value="@Model.PIC">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputPassword4" class="form-label">PIC Email</label>
+                                    <input type="email" class="form-control" value="@Model.Email">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputEmail4" class="form-label">Number of Participants</label>
+                                    <input type="number" class="form-control" value="@Model.Participants">
+                                </div>
+                                <div class="col-md-6"></div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    @*<h1 class="pt-3">Meeting Room</h1>
+    <div class="mt-5"></div>
+    <div class="mt-5"></div>
+
+    <h1 class="pt-3">@Model.Tower</h1>
+    <h1 class="">@Model.Floor</h1>
+    <hr />
+
+    <p class="fw-bold pt-3">@Model.Participants Participants</p>
+    <p class="fw-bold">Facilities: @Model.Facility</p>
+
+    <p><b>@dayNow, @dateNow</b></p>
+    <h2>@timeNow</h2>
+    @*<h3>@startTime</h3>*@
+
+    @*<div class="pb-3"></div>
+    <table class="table table-bordered table-striped pt-3 pb-5" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Room ID
+                </th>
+                <th>
+                    PIN
+                </th>
+                <th>
+                    Participants
+                </th>
+                <th>
+                    Facility
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    End Time 
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Tower
+                </th>
+                <th>
+                    Floor
+                </th>
+                <th>
+                    PIC
+                </th>
+                <th>
+                    Email
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        
+                <tr>
+                    <td width="7%" id="coba">@Model.Id</td>
+                    <td width="7%" id="coba">@Model.PIN</td>
+                    <td width="7%" id="coba">@Model.Participants</td>
+                    <td width="7%" id="coba">@Model.Facility</td>
+                    <td width="7%" id="coba">@Model.StartDate</td>
+                    <td width="7%" id="coba">@Model.EndDate</td>
+                    <td width="7%" id="coba">@Model.StartTime</td>
+                    <td width="7%" id="coba">@Model.EndTime</td>
+                    <td width="7%" id="coba">@Model.Title</td>
+                    <td width="7%" id="coba">@Model.Tower</td>
+                    <td width="7%" id="coba">@Model.Floor</td>
+                    <td width="7%" id="coba">@Model.PIC</td>
+                    <td width="7%" id="coba">@Model.Email</td>
+                </tr>
+        
+        </tbody>
+    </table>*@
+}
